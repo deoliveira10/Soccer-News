@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import me.dio.soccernews.MainActivity;
 import me.dio.soccernews.data.remote.local.AppDatabase;
 import me.dio.soccernews.databinding.FragmentNewsBinding;
@@ -40,13 +42,14 @@ public class NewsFragment extends Fragment {
         newsViewModel.getState().observe(getViewLifecycleOwner(), state -> {
             switch (state) {
                 case DOING:
-                    //TODO: Iniciar SwiperRefreshlayout(loading)
+                    binding.srlNews.setRefreshing(true);
                     break;
                 case DONE:
-                    //TODO: Finalizar SwiperRefreshlayout(loading)
+                    binding.srlNews.setRefreshing(false);
                     break;
                 case ERROR:
-                    //TODO: Iniciar SwiperRefreshlayout(loading)
+                    binding.srlNews.setRefreshing(false);
+                    Snackbar.make(binding.srlNews, "Network error", Snackbar.LENGTH_SHORT).show();
             }
         });
         return root;

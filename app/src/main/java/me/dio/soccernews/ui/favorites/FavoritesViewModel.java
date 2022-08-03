@@ -9,7 +9,4 @@ public class FavoritesViewModel extends ViewModel {
     public FavoritesViewModel() {
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
 }
